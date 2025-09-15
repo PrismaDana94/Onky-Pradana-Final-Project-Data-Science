@@ -38,6 +38,50 @@ segment_percent = (segment_counts / segment_counts.sum() * 100).round(2)
 
 st.write("Segment Counts:", segment_counts)
 st.write("Segment Percentages:", segment_percent)
+# --- Segmentasi Risiko ---
+threshold = 0.0093
+df_profit['risk_segment'] = pd.cut(
+    df_profit['y_prob'],
+    bins=[0, threshold, 1],
+    labels=['Low Risk', 'High Risk']
+)
+
+# Hitung jumlah dan persentase
+segment_counts = df_profit['risk_segment'].value_counts().sort_index()
+segment_percent = (segment_counts / segment_counts.sum() * 100).round(2)
+
+st.subheader("Segmentasi Risiko Fraud")
+
+# --- Bar Chart ---
+fig, ax = plt.subplots(figsize=(6,4))
+bars = ax.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'red'])
+
+# Tambahkan label jumlah & persentase di atas bar
+for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
+    ax.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() + 100,
+        f"{count} ({pct}%)",
+        ha='center', va='bottom'
+    )
+
+ax.set_title("Number of Transactions per Risk Segment")
+ax.set_xlabel("Risk Segment")
+ax.set_ylabel("Number of Transactions")
+ax.grid(axis='y')
+st.pyplot(fig)
+
+# --- Pie Chart ---
+fig2, ax2 = plt.subplots(figsize=(4,4))
+ax2.pie(
+    segment_percent,
+    labels=segment_percent.index,
+    autopct='%1.1f%%',
+    colors=['skyblue', 'red'],
+    startangle=90
+)
+ax2.set_title("Percentage of Transactions per Segment")
+st.pyplot(fig2)
 
 
 
