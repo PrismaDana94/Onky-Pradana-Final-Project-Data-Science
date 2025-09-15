@@ -25,5 +25,15 @@ ax.legend()
 # Tampilkan ke Streamlit
 st.pyplot(fig)
 
+# Hitung profit per segmen (misalnya sudah ada kolom risk_segment)
+if "risk_segment" in df_profit.columns:
+    segment_profit = df_profit.groupby('risk_segment')['cum_profit'].sum().reset_index()
+
+    fig2, ax2 = plt.subplots(figsize=(5, 5))
+    ax2.pie(segment_profit['cum_profit'], labels=segment_profit['risk_segment'], autopct='%1.1f%%', startangle=90)
+    ax2.set_title("Profit Share per Risk Segment")
+
+    st.pyplot(fig2)
+
 
 
