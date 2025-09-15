@@ -113,26 +113,10 @@ ax4.set_ylabel("Profit (£)")
 ax4.grid(axis='y')
 st.pyplot(fig4)
 
-fig5, ax5 = plt.subplots()
 
-# Plot bar
-segment_profit.plot(
-    kind='bar', x='risk_segment', y='profit', ax=ax5,
-    color=['skyblue' if p >= 0 else 'red' for p in segment_profit['profit']]
-)
-
-# Tambahkan angka di atas bar
-for i, v in enumerate(segment_profit['profit']):
-    ax5.text(
-        i, v + (0.02 * segment_profit['profit'].max()),  # posisi teks
-        f"{v:,.0f}", ha='center', va='bottom', fontsize=10
-    )
-
-ax5.set_title("Profit per Risk Segment")
-ax5.set_ylabel("Profit")
-st.pyplot(fig5)
-
-# Hitung total profit per segmen
+# ======================
+# 6. Total Profit Per Segmen
+# ======================
 segment_profit = df_profit.groupby('risk_segment')['cum_profit'].sum().reset_index()
 segment_profit = segment_profit.rename(columns={'cum_profit': 'total_profit'})
 
@@ -165,11 +149,11 @@ st.dataframe(segment_profit)
 
 
 # ======================
-# 6. INSIGHTS
+# 7. INSIGHTS
 # ======================
-st.subheader("📊 Insights & Kesimpulan")
+st.subheader("Insights & Kesimpulan")
 st.success(f"""
-✅ Dengan threshold optimal {threshold_opt:.4f} (≈ {population_opt:.2f}% populasi ditarget),
+Dengan threshold optimal {threshold_opt:.4f} (≈ {population_opt:.2f}% populasi ditarget),
 kita dapat profit maksimum sebesar £{max_profit:,.0f}.
 """)
 
@@ -178,3 +162,11 @@ st.info("""
 - **High Risk** = transaksi dengan probabilitas fraud tinggi → perlu pengecekan manual.  
 - Threshold bisa disesuaikan di sidebar untuk eksplorasi trade-off antara coverage & profit.
 """)
+
+st.warning("""
+ **Rekomendasi**:  
+- Gunakan **threshold optimal** sebagai baseline operasional.  
+- Lakukan evaluasi rutin karena pola fraud bisa berubah.  
+- Pertimbangkan menambahkan **biaya investigasi manual** agar perhitungan profit lebih realistis.  
+""")
+
