@@ -123,6 +123,53 @@ ax4.pie(
 ax4.set_title("Profit Distribution per Segment")
 st.pyplot(fig4)
 
+from sklearn.metrics import roc_curve, auc
+
+fpr, tpr, thresholds = roc_curve(df_profit['y_true'], df_profit['y_prob'])
+roc_auc = auc(fpr, tpr)
+
+fig5, ax5 = plt.subplots()
+ax5.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
+ax5.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+ax5.set_xlim([0.0, 1.0])
+ax5.set_ylim([0.0, 1.05])
+ax5.set_xlabel('False Positive Rate')
+ax5.set_ylabel('True Positive Rate')
+ax5.set_title('ROC Curve - XGBoost')
+ax5.legend(loc="lower right")
+st.pyplot(fig5)
+
+st.subheader("Summary Metrics")
+st.table({
+    "Metric": ["Optimal Threshold", "Max Profit (£)", "Target Population (%)"],
+    "Value": [f"{threshold:.4f}", f"{max_profit:,.0f}", f"{population_optimal:.2f}%"]
+})
+col1, col2 = st.columns(2)
+with col1:
+    st.pyplot(fig3)
+with col2:
+    st.pyplot(fig4)
+st.subheader("Explore Different Thresholds")
+user_threshold = st.slider("Set Threshold", 0.0, 0.05, float(threshold), 0.001)
+
+df_profit['user_segment'] = pd.cut(
+    df_profit['y_prob'],
+    bins=[0, user_threshold, 1],
+    labels=['Low Risk', 'High Risk']
+)
+
+st.write(df_profit['user_segment'].value_counts(normalize=True)*100)
+st.success(f"""
+✅ Dengan threshold optimal {threshold:.4f} (≈ {population_optimal:.2f}% populasi ditarget), 
+kita dapat profit maksimum sebesar £{max_profit:,.0f}.
+""")
+
+st.info("""
+- **Low Risk** = transaksi yang relatif aman, sebagian besar bukan fraud.  
+- **High Risk** = transaksi dengan probabilitas fraud tinggi, lebih fokus dicek manual.  
+""")
+
+
 
 
 
