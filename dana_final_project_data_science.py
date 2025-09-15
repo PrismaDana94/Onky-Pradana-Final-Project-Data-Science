@@ -113,11 +113,14 @@ ax4.set_ylabel("Profit (£)")
 ax4.grid(axis='y')
 st.pyplot(fig4)
 
-fig5, ax5 = plt.subplots(figsize=(4,4))
-ax5.pie(segment_profit['profit'], labels=segment_profit['risk_segment'], autopct='%1.1f%%',
-        colors=['skyblue', 'red'], startangle=90)
-ax5.set_title("Profit Distribution per Segment")
+fig5, ax5 = plt.subplots()
+segment_profit.plot(
+    kind='bar', x='risk_segment', y='profit', ax=ax5,
+    color=['skyblue' if p >= 0 else 'red' for p in segment_profit['profit']]
+)
+ax5.set_title("Profit per Risk Segment")
 st.pyplot(fig5)
+
 
 # ======================
 # 6. INSIGHTS
