@@ -114,12 +114,24 @@ ax4.grid(axis='y')
 st.pyplot(fig4)
 
 fig5, ax5 = plt.subplots()
+
+# Plot bar
 segment_profit.plot(
     kind='bar', x='risk_segment', y='profit', ax=ax5,
     color=['skyblue' if p >= 0 else 'red' for p in segment_profit['profit']]
 )
+
+# Tambahkan angka di atas bar
+for i, v in enumerate(segment_profit['profit']):
+    ax5.text(
+        i, v + (0.02 * segment_profit['profit'].max()),  # posisi teks
+        f"{v:,.0f}", ha='center', va='bottom', fontsize=10
+    )
+
 ax5.set_title("Profit per Risk Segment")
+ax5.set_ylabel("Profit")
 st.pyplot(fig5)
+
 
 
 # ======================
