@@ -33,6 +33,12 @@ st.write("Jumlah baris data:", len(df_profit))
 st.write(df_profit['y_prob'].describe())
 segment_counts = df_profit['risk_segment'].value_counts().sort_index()
 st.write("Segment Counts:", segment_counts)
+segment_counts = df_profit['risk_segment'].value_counts().sort_index()
+segment_percent = (segment_counts / segment_counts.sum() * 100).round(2)
+
+st.write("Segment Counts:", segment_counts)
+st.write("Segment Percentages:", segment_percent)
+
 
 
 
