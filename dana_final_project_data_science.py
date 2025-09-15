@@ -132,6 +132,25 @@ ax5.set_title("Profit per Risk Segment")
 ax5.set_ylabel("Profit")
 st.pyplot(fig5)
 
+fig5, ax5 = plt.subplots()
+
+# Plot bar
+segment_profit.plot(
+    kind='bar', x='risk_segment', y='profit', ax=ax5,
+    color=['skyblue' if p >= 0 else 'red' for p in segment_profit['profit']],
+    legend=False
+)
+
+# Tambahkan angka total di atas tiap bar
+for i, v in enumerate(segment_profit['profit']):
+    ax5.text(
+        i, v + (0.02 * segment_profit['profit'].max()), 
+        f"Rp {v:,.0f}", ha='center', va='bottom', fontsize=10
+    )
+
+ax5.set_title("Total Profit per Risk Segment")
+ax5.set_ylabel("Profit (Rp)")
+st.pyplot(fig5)
 
 
 # ======================
