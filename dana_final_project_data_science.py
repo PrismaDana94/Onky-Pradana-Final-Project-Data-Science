@@ -104,6 +104,47 @@ for bar, count, pct in zip(bars, user_counts.values, user_percent.values):
 ax5.set_title(f"Transactions by Segment (Threshold = {user_threshold:.4f})")
 st.pyplot(fig5)
 
+st.subheader("Profit per Risk Segment")
+
+# Hitung total profit per segmen (pakai sum dari cum_profit)
+segment_profit = df_profit.groupby('risk_segment')['cum_profit'].sum().reset_index()
+segment_profit = segment_profit.rename(columns={'cum_profit': 'total_profit'})
+
+# Hitung persentase profit
+segment_profit['profit_pct'] = (segment_profit['total_profit'] / segment_profit['total_profit'].sum() * 100).round(2)
+
+# --- Bar Chart Profit ---
+fig3, ax3 = plt.subplots(figsize=(6,4))
+bars = ax3.bar(segment_profit['risk_segment'], segment_profit['total_profit'], color=['skyblue', 'red'])
+
+# Tambahkan label profit di atas bar
+for bar, profit, pct in zip(bars, segment_profit['total_profit'], segment_profit['profit_pct']):
+    ax3.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() + (bar.get_height()*0.02),
+        f"£{profit:,.0f} ({pct}%)",
+        ha='center', va='bottom'
+    )
+
+ax3.set_title("Total Profit per Risk Segment")
+ax3.set_xlabel("Risk Segment")
+ax3.set_ylabel("Total Profit (£)")
+ax3.grid(axis='y')
+st.pyplot(fig3)
+
+# --- Pie Chart Profit ---
+fig4, ax4 = plt.subplots(figsize=(4,4))
+ax4.pie(
+    segment_profit['total_profit'],
+    labels=segment_profit['risk_segment'],
+    autopct='%1.1f%%',
+    colors=['skyblue', 'red'],
+    startangle=90
+)
+ax4.set_title("Profit Distribution per Segment")
+st.pyplot(fig4)
+
+
 # ======================
 # 5. Insights
 # ======================
