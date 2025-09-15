@@ -132,25 +132,36 @@ ax5.set_title("Profit per Risk Segment")
 ax5.set_ylabel("Profit")
 st.pyplot(fig5)
 
-fig5, ax5 = plt.subplots()
+# Hitung total profit per segmen
+segment_profit = df_profit.groupby('risk_segment')['cum_profit'].sum().reset_index()
+segment_profit = segment_profit.rename(columns={'cum_profit': 'total_profit'})
 
-# Plot bar
-segment_profit.plot(
-    kind='bar', x='risk_segment', y='profit', ax=ax5,
-    color=['skyblue' if p >= 0 else 'red' for p in segment_profit['profit']],
-    legend=False
-)
+# Plot bar chart
+fig6, ax6 = plt.subplots(figsize=(6,4))
+bars = ax6.bar(segment_profit['risk_segment'], segment_profit['total_profit'],
+               color=['skyblue', 'red'])
 
-# Tambahkan angka total di atas tiap bar
-for i, v in enumerate(segment_profit['profit']):
-    ax5.text(
-        i, v + (0.02 * segment_profit['profit'].max()), 
-        f"Rp {v:,.0f}", ha='center', va='bottom', fontsize=10
+# Tambahkan label angka di atas batang
+for bar, profit in zip(bars, segment_profit['total_profit']):
+    ax6.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() + (bar.get_height()*0.02),
+        f"{profit:,.0f}",
+        ha='center', va='bottom', fontsize=10
     )
 
-ax5.set_title("Total Profit per Risk Segment")
-ax5.set_ylabel("Profit (Rp)")
-st.pyplot(fig5)
+ax6.set_title("Total Profit per Risk Segment (2 Segments)")
+ax6.set_xlabel("Risk Segment")
+ax6.set_ylabel("Total Profit (£)")
+ax6.grid(axis='y')
+plt.tight_layout()
+
+# Tampilkan di Streamlit
+st.pyplot(fig6)
+
+# Kalau mau tampilkan tabel juga
+st.write("### Ringkasan Total Profit per Segmen")
+st.dataframe(segment_profit)
 
 
 # ======================
