@@ -25,7 +25,10 @@ ax.legend()
 # Tampilkan ke Streamlit
 st.pyplot(fig)
 
-st.write("Summary of y_prob", df_profit['y_prob'].describe())
+max_profit_idx = df_profit['cum_profit'].idxmax()
+threshold = df_profit.loc[max_profit_idx, 'y_prob']
+st.write("Threshold Optimal dari Profit Curve:", threshold)
+
 
 
 
