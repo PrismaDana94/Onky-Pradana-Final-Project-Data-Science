@@ -50,7 +50,7 @@ Dataset yang digunakan diambil langsung dari repo ini:
 
 ## 📌 Key Insights
 - Threshold optimal berada di sekitar **0.0093** → menargetkan **~15.9% populasi**.  
-- Profit maksimum yang bisa dicapai adalah sekitar **£X,XXX,XXX** (lihat dashboard).  
+- Profit maksimum yang bisa dicapai adalah sekitar **£124.780** (lihat dashboard).  
 - **Low Risk** → transaksi aman, bisa diproses otomatis.  
 - **High Risk** → transaksi dengan risiko tinggi, disarankan untuk pengecekan manual.  
 
@@ -70,7 +70,7 @@ Dataset yang digunakan diambil langsung dari repo ini:
 ## 📬 Author
 👤 **Onky Pradana**  
 - 📧 Email: [freddycull27@gmail.com]  
-- 💼 LinkedIn:[your_linkedin](https://www.linkedin.com/in/prisma-dana/)  
+- 💼 LinkedIn:[my_linkedin](https://www.linkedin.com/in/prisma-dana/)  
 - 🐙 GitHub: [PrismaDana94](https://github.com/PrismaDana94)
 
 ---
