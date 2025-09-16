@@ -114,7 +114,7 @@ insight_text = f"""
 """
 
 st.markdown(insight_text)
----
+
 
 # ======================
 # 3. SIDEBAR THRESHOLD
