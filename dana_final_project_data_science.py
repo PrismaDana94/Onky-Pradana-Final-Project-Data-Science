@@ -56,6 +56,92 @@ st.table({
 })
 
 # ======================
+# 2. PROFIT CURVE
+# ======================
+
+st.subheader("📈 Profit Curve")
+
+# Cari index dari profit kumulatif tertinggi
+max_profit_idx = df_profit['cum_profit'].idxmax()
+
+# Ambil threshold optimal berdasarkan probabilitas pada titik max profit
+threshold_opt = df_profit.loc[max_profit_idx, 'y_prob']
+
+# Nilai maksimum profit
+max_profit = df_profit['cum_profit'].max()
+
+# Persentase populasi optimal yang harus ditargetkan
+population_opt = (df_profit.loc[:max_profit_idx].shape[0] / df_profit.shape[0]) * 100
+
+# ======================
+# Plot Profit Curve
+# ======================
+fig, ax = plt.subplots(figsize=(6,4))
+
+# Garis utama profit curve
+ax.plot(df_profit['population_pct'], df_profit['cum_profit'], label="Profit Curve")
+
+# Garis horizontal untuk menunjukkan Max Profit
+ax.axhline(max_profit, color="green", linestyle="--", label=f"Max Profit: £{max_profit:,.0f}")
+
+# Garis vertikal untuk menunjukkan Optimal Population
+ax.axvline(population_opt, color="red", linestyle="--", label=f"Optimal Pop: {population_opt:.2f}%")
+
+# Label dan judul
+ax.set_xlabel("Percentage of Population Targeted (%)")
+ax.set_ylabel("Cumulative Profit (£)")
+ax.set_title("Profit Curve with Optimal Threshold")
+
+# Legend
+ax.legend()
+
+# Tampilkan plot ke Streamlit
+st.pyplot(fig)
+
+# ======================
+# Table Metrics
+# ======================
+st.markdown("### 📋 Key Metrics")
+metrics = {
+    "Metric": ["Optimal Threshold", "Max Profit (£)", "Target Population (%)"],
+    "Value": [f"{threshold_opt:.4f}", f"{max_profit:,.0f}", f"{population_opt:.2f}%"]
+}
+st.table(metrics)
+
+# ======================
+# Insight Otomatis
+# ======================
+st.markdown("### 🔍 Insight Analysis")
+
+insight_text = f"""
+1. *Optimal Threshold*  
+   - Nilai threshold optimal adalah *{threshold_opt:.4f}*.  
+   - Pelanggan dengan probabilitas di atas nilai ini sebaiknya ditargetkan karena memiliki potensi profit yang tinggi.
+
+2. *Max Profit*  
+   - Profit maksimum yang dapat dicapai adalah *£{max_profit:,.0f}*.  
+   - Profit ini dicapai saat menargetkan *{population_opt:.2f}%* dari populasi.
+
+3. *Target Population*  
+   - Hanya sekitar *{population_opt:.2f}%* dari populasi yang sebaiknya ditargetkan.  
+   - Jika lebih dari persentase ini yang ditargetkan, profit akan mulai *menurun* karena biaya melebihi pendapatan.
+
+---
+
+### 📈 Interpretasi Grafik
+- Kurva profit meningkat tajam di awal, menunjukkan pelanggan awal memberikan kontribusi besar terhadap profit.
+- Setelah mencapai titik optimal ({population_opt:.2f}% populasi**), profit mulai menurun karena pelanggan tambahan tidak cukup bernilai dan menyebabkan biaya meningkat.
+
+### 💡 Rekomendasi Bisnis
+- Fokuskan kampanye pada *{population_opt:.2f}% populasi* dengan probabilitas tertinggi.
+- Gunakan threshold *{threshold_opt:.4f}* sebagai acuan untuk menentukan siapa yang ditargetkan.
+- Segmentasi lebih lanjut dapat membantu mempersonalisasi strategi marketing.
+"""
+
+st.markdown(insight_text)
+
+
+# ======================
 # 3. SIDEBAR THRESHOLD
 # ======================
 st.sidebar.header("⚙️ Controls")
