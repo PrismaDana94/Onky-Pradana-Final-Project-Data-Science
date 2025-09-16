@@ -143,19 +143,10 @@ insight_text = f"""
 3. *Strategi Prioritas*
    - Tetap monitor *Low Risk* untuk mencegah false negative (fraud yang lolos).
    - Buat aturan atau model khusus untuk *High Risk* agar investigasi lebih efektif dan hemat biaya.
-
----
-
-### 📊 Interpretasi Grafik
-- Grafik menunjukkan dominasi transaksi *Low Risk*, yang wajar dalam kebanyakan sistem.
-- Tingginya perbedaan jumlah transaksi memberi peluang untuk membuat sistem yang efisien: hanya sebagian kecil yang perlu perhatian intensif.
-
-### 💡 Rekomendasi Bisnis
-- Fokuskan resource tim investigasi ke *High Risk* terlebih dahulu.
-- Gunakan automasi (misalnya machine learning) untuk memantau *Low Risk* secara masif, sehingga biaya operasional tetap rendah.
-- Review secara berkala apakah distribusi ini berubah (misalnya jika High Risk makin besar).
 """
 st.markdown(insight_text)
+
+---
 
 # ======================
 # 4. RISK SEGMENTATION
