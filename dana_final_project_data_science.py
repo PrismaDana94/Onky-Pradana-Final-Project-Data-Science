@@ -105,7 +105,7 @@ insight_text = f"""
 
 ### 📈 Interpretasi Grafik
 - Kurva profit meningkat tajam di awal, menunjukkan pelanggan awal memberikan kontribusi besar terhadap profit.
-- Setelah mencapai titik optimal ({population_opt:.2f}% populasi**), profit mulai menurun karena pelanggan tambahan tidak cukup bernilai dan menyebabkan biaya meningkat.
+- Setelah mencapai titik optimal (**{population_opt:.2f}% populasi**), profit mulai menurun karena pelanggan tambahan tidak cukup bernilai dan menyebabkan biaya meningkat.
 
 ### 💡 Rekomendasi Bisnis
 - Fokuskan kampanye pada *{population_opt:.2f}% populasi* dengan probabilitas tertinggi.
