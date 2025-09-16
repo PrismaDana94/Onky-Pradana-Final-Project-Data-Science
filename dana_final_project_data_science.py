@@ -146,8 +146,6 @@ insight_text = f"""
 """
 st.markdown(insight_text)
 
----
-
 # ======================
 # 4. RISK SEGMENTATION
 # ======================
