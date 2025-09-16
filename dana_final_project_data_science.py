@@ -33,31 +33,6 @@ st.dataframe(df_profit.head())
 # ======================
 # 2. PROFIT CURVE
 # ======================
-st.subheader("📈 Profit Curve")
-
-max_profit_idx = df_profit['cum_profit'].idxmax()
-threshold_opt = df_profit.loc[max_profit_idx, 'y_prob']
-max_profit = df_profit['cum_profit'].max()
-population_opt = (df_profit.loc[:max_profit_idx].shape[0] / df_profit.shape[0]) * 100
-
-fig, ax = plt.subplots(figsize=(6,4))
-ax.plot(df_profit['population_pct'], df_profit['cum_profit'], label="Profit Curve")
-ax.axhline(max_profit, color="green", linestyle="--", label=f"Max Profit: £{max_profit:,.0f}")
-ax.axvline(population_opt, color="red", linestyle="--", label=f"Optimal Pop: {population_opt:.2f}%")
-ax.set_xlabel("Percentage of Population Targeted (%)")
-ax.set_ylabel("Cumulative Profit (£)")
-ax.set_title("Profit Curve with Optimal Threshold")
-ax.legend()
-st.pyplot(fig)
-
-st.table({
-    "Metric": ["Optimal Threshold", "Max Profit (£)", "Target Population (%)"],
-    "Value": [f"{threshold_opt:.4f}", f"{max_profit:,.0f}", f"{population_opt:.2f}%"]
-})
-
-# ======================
-# 2. PROFIT CURVE
-# ======================
 
 st.subheader("📈 Profit Curve")
 
