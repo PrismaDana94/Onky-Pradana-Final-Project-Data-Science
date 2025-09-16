@@ -131,6 +131,31 @@ df_profit['risk_segment'] = pd.cut(
     bins=[0, user_threshold, 1],
     labels=['Low Risk', 'High Risk']
 )
+insight_text = f"""
+1. *Distribusi Risiko*
+   - Mayoritas transaksi berada di segmen *Low Risk* (*16,826 transaksi | 84.13%*).
+   - Segmen *High Risk* hanya mencakup *3,174 transaksi | 15.87%*, namun tetap penting karena berpotensi menimbulkan kerugian lebih besar.
+
+2. *Implikasi Risiko*
+   - Proporsi *High Risk* relatif kecil, tetapi masih signifikan.
+   - Fokus pengawasan dan mitigasi bisa diarahkan terutama ke segmen ini untuk mengurangi potensi fraud atau kerugian.
+
+3. *Strategi Prioritas*
+   - Tetap monitor *Low Risk* untuk mencegah false negative (fraud yang lolos).
+   - Buat aturan atau model khusus untuk *High Risk* agar investigasi lebih efektif dan hemat biaya.
+
+---
+
+### 📊 Interpretasi Grafik
+- Grafik menunjukkan dominasi transaksi *Low Risk*, yang wajar dalam kebanyakan sistem.
+- Tingginya perbedaan jumlah transaksi memberi peluang untuk membuat sistem yang efisien: hanya sebagian kecil yang perlu perhatian intensif.
+
+### 💡 Rekomendasi Bisnis
+- Fokuskan resource tim investigasi ke *High Risk* terlebih dahulu.
+- Gunakan automasi (misalnya machine learning) untuk memantau *Low Risk* secara masif, sehingga biaya operasional tetap rendah.
+- Review secara berkala apakah distribusi ini berubah (misalnya jika High Risk makin besar).
+"""
+st.markdown(insight_text)
 
 # ======================
 # 4. RISK SEGMENTATION
@@ -174,6 +199,31 @@ ax4.set_ylabel("Profit (£)")
 ax4.grid(axis='y')
 st.pyplot(fig4)
 
+insight_text = f"""
+1. *Distribusi Profit*
+   - Segmen *Low Risk* justru mengalami kerugian sebesar *£-166,390 (398.92%)*.
+   - Segmen *High Risk* memberikan profit sebesar *£124,680 (-298.92%)*.
+
+2. *Analisis Profitabilitas*
+   - Meskipun jumlah transaksi *Low Risk* jauh lebih besar, segmen ini menghasilkan *kerugian bersih*.
+   - Segmen *High Risk* yang jumlahnya lebih kecil ternyata berkontribusi *positif* terhadap profit.
+
+3. *Implikasi Bisnis*
+   - Strategi saat ini mungkin terlalu fokus pada Low Risk, tetapi justru menimbulkan biaya lebih besar dari pendapatan.
+   - High Risk sebaiknya dipertimbangkan untuk dioptimalkan, karena memberi kontribusi profit yang nyata.
+
+---
+
+### 📊 Interpretasi Grafik
+- Hasil ini menunjukkan bahwa tidak semua "Low Risk" otomatis menguntungkan.
+- Bisa jadi biaya akuisisi/pemeliharaan pelanggan Low Risk lebih tinggi dibandingkan revenue yang mereka hasilkan.
+
+### 💡 Rekomendasi Bisnis
+- *Evaluasi ulang strategi* terhadap Low Risk, terutama pricing, biaya promosi, atau biaya akuisisinya.
+- *Pertimbangkan untuk meningkatkan fokus* pada High Risk yang terbukti lebih menguntungkan, tetapi tetap dengan mitigasi risiko agar fraud tetap terkendali.
+- Lakukan *analisis mendalam* (misalnya cohort analysis) untuk mencari tahu kenapa Low Risk malah merugi.
+"""
+st.markdown(insight_text)
 
 # ======================
 # 6. Total Profit Per Segmen
@@ -203,6 +253,32 @@ plt.tight_layout()
 
 # Tampilkan di Streamlit
 st.pyplot(fig6)
+
+insight_text = f"""
+1. *Total Profit per Segment*
+   - *Low Risk* menghasilkan total profit sebesar *£712,692,820*.
+   - *High Risk* menyumbang profit sebesar *£299,204,630*.
+
+2. *Kontribusi Profit*
+   - Meskipun Low Risk memberi kontribusi profit terbesar, High Risk tetap menyumbang porsi signifikan (~29.6% dari total profit).
+   - Hal ini menunjukkan High Risk bukan hanya ancaman, tetapi juga memiliki potensi bisnis yang cukup besar.
+
+3. *Implikasi Bisnis*
+   - Strategi pengelolaan risiko harus seimbang: jangan terlalu defensif terhadap High Risk karena justru menyumbang profit besar.
+   - Fokus pada *meningkatkan konversi High Risk yang menguntungkan*, sambil tetap menekan potensi fraud.
+
+---
+
+### 📊 Interpretasi Grafik
+- Profit dari Low Risk mendominasi, sesuai ekspektasi karena volumenya jauh lebih besar.
+- Namun kontribusi High Risk tidak bisa diabaikan karena hampir mencapai sepertiga dari total profit.
+
+### 💡 Rekomendasi Bisnis
+- Pertahankan kualitas transaksi Low Risk agar profit tetap tinggi.
+- Buat *strategi selektif* untuk High Risk, misalnya: segmentasi lebih detail untuk memisahkan High Risk yang benar-benar merugikan dari yang profitable.
+- Gunakan *model prediksi risiko* untuk menyeimbangkan antara risk mitigation dan profit maximization.
+"""
+st.markdown(insight_text)
 
 # Kalau mau tampilkan tabel juga
 st.write("### Ringkasan Total Profit per Segmen")
