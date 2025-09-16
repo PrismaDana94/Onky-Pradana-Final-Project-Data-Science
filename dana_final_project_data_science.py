@@ -181,6 +181,32 @@ ax3.pie(segment_counts, labels=segment_counts.index, autopct='%1.1f%%',
 ax3.set_title("Risk Segment Distribution")
 st.pyplot(fig3)
 
+insight_text = f"""
+1. *Distribusi Risiko*
+   - Mayoritas transaksi berada di segmen *Low Risk* (*16,826 transaksi | 84.13%*).
+   - Segmen *High Risk* hanya mencakup *3,174 transaksi | 15.87%*, namun tetap penting karena berpotensi menimbulkan kerugian lebih besar.
+
+2. *Implikasi Risiko*
+   - Proporsi *High Risk* relatif kecil, tetapi masih signifikan.
+   - Fokus pengawasan dan mitigasi bisa diarahkan terutama ke segmen ini untuk mengurangi potensi fraud atau kerugian.
+
+3. *Strategi Prioritas*
+   - Tetap monitor *Low Risk* untuk mencegah false negative (fraud yang lolos).
+   - Buat aturan atau model khusus untuk *High Risk* agar investigasi lebih efektif dan hemat biaya.
+
+---
+
+### 📊 Interpretasi Grafik
+- Grafik menunjukkan dominasi transaksi *Low Risk*, yang wajar dalam kebanyakan sistem.
+- Tingginya perbedaan jumlah transaksi memberi peluang untuk membuat sistem yang efisien: hanya sebagian kecil yang perlu perhatian intensif.
+
+### 💡 Rekomendasi Bisnis
+- Fokuskan resource tim investigasi ke *High Risk* terlebih dahulu.
+- Gunakan automasi (misalnya machine learning) untuk memantau *Low Risk* secara masif, sehingga biaya operasional tetap rendah.
+- Review secara berkala apakah distribusi ini berubah (misalnya jika High Risk makin besar).
+"""
+st.markdown(insight_text)
+
 # ======================
 # 5. PROFIT PER SEGMENT
 # ======================
