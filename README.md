@@ -58,8 +58,11 @@ Dataset yang digunakan diambil langsung dari repo ini:
 
 ## 📂 Project Structure
 ├── Dana_Final_Project_Credit_Card_Fraud_detection.csv # Dataset
+
 ├── dana_final_project_data_science.py # Streamlit app
+
 ├── requirements.txt # Dependencies
+
 └── README.md # Project documentation
 
 ---
