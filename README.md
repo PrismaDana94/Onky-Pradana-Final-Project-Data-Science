@@ -50,7 +50,7 @@ Dataset yang digunakan diambil langsung dari repo ini:
 
 ## 📌 Key Insights
 - Threshold optimal berada di sekitar **0.0093** → menargetkan **~15.9% populasi**.  
-- Profit maksimum yang bisa dicapai adalah sekitar **£124.780** (lihat dashboard).  
+- Profit maksimum yang bisa dicapai adalah sekitar **£124.780**.  
 - **Low Risk** → transaksi aman, bisa diproses otomatis.  
 - **High Risk** → transaksi dengan risiko tinggi, disarankan untuk pengecekan manual.  
 
