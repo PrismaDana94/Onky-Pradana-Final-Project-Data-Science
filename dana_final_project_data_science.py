@@ -114,7 +114,42 @@ insight_text = f"""
 """
 
 st.markdown(insight_text)
+---
+insight_text = f"""
+<div style="background-color:#e6ffed; padding:15px; border-radius:10px; margin-bottom:10px;">
+<b>1. Optimal Threshold</b><br>
+- Nilai threshold optimal adalah <b>{threshold_opt:.4f}</b>.<br>
+- Pelanggan dengan probabilitas di atas nilai ini sebaiknya ditargetkan karena memiliki potensi profit yang tinggi.
+</div>
 
+<div style="background-color:#f0f7ff; padding:15px; border-radius:10px; margin-bottom:10px;">
+<b>2. Max Profit</b><br>
+- Profit maksimum yang dapat dicapai adalah <b>£{max_profit:,.0f}</b>.<br>
+- Profit ini dicapai saat menargetkan <b>{population_opt:.2f}%</b> dari populasi.
+</div>
+
+<div style="background-color:#fff8e1; padding:15px; border-radius:10px; margin-bottom:10px;">
+<b>3. Target Population</b><br>
+- Hanya sekitar <b>{population_opt:.2f}%</b> dari populasi yang sebaiknya ditargetkan.<br>
+- Jika lebih dari persentase ini yang ditargetkan, profit akan mulai <b>menurun</b> karena biaya melebihi pendapatan.
+</div>
+
+<div style="background-color:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:10px;">
+<h4>📈 Interpretasi Grafik</h4>
+- Kurva profit meningkat tajam di awal, menunjukkan pelanggan awal memberikan kontribusi besar terhadap profit.<br>
+- Setelah mencapai titik optimal (<b>{population_opt:.2f}% populasi</b>), profit mulai menurun karena pelanggan tambahan tidak cukup bernilai dan menyebabkan biaya meningkat.
+</div>
+
+<div style="background-color:#fff4e5; padding:15px; border-radius:10px;">
+<h4>💡 Rekomendasi Bisnis</h4>
+- Fokuskan kampanye pada <b>{population_opt:.2f}%</b> populasi dengan probabilitas tertinggi.<br>
+- Gunakan threshold <b>{threshold_opt:.4f}</b> sebagai acuan untuk menentukan siapa yang ditargetkan.<br>
+- Segmentasi lebih lanjut dapat membantu mempersonalisasi strategi marketing.
+</div>
+"""
+
+st.markdown(insight_text, unsafe_allow_html=True)
+---
 
 # ======================
 # 3. SIDEBAR THRESHOLD
