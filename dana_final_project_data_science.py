@@ -147,7 +147,7 @@ bars = ax2.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'r
 for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
     ax2.text(
         bar.get_x() + bar.get_width()/2,
-        bar.get_height() + (0.02 * segment_counts.max()),  # kasih jarak dinamis dari bar
+        bar.get_height() + (0.05 * bar.get_height()),  #lebih flexible
         f"{count} ({pct}%)",
         ha='center', va='bottom', fontsize=10, fontweight='bold'
     )
