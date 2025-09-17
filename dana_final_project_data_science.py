@@ -212,31 +212,43 @@ st.markdown(insight_text)
 st.subheader("💰 Profit per Risk Segment")
 
 segment_profit = df_profit.groupby('risk_segment')['profit'].sum().reset_index()
-segment_profit['profit_pct'] = (segment_profit['profit'] / segment_profit['profit'].sum() * 100).round(2)
+segment_profit['profit_pct'] = (
+    segment_profit['profit'] / segment_profit['profit'].sum() * 100
+).round(2)
+
 fig4, ax4 = plt.subplots(figsize=(6,4))
-bars = ax4.bar(segment_profit['risk_segment'], segment_profit['profit'], color=['skyblue', 'red'])
+bars = ax4.bar(
+    segment_profit['risk_segment'],
+    segment_profit['profit'],
+    color=['skyblue', 'red']
+)
 
 for bar, profit, pct in zip(bars, segment_profit['profit'], segment_profit['profit_pct']):
+    offset = abs(profit) * 0.05  # offset proporsional (5% dari nilai profit)
+
     if profit >= 0:
         # label di atas bar
         ax4.text(
             bar.get_x() + bar.get_width()/2,
-            profit + (0.02 * profit),   # offset 2% dari tinggi bar
+            profit + offset,
             f"£{profit:,.0f} ({pct}%)",
-            ha='center', va='bottom', fontsize=10, fontweight='bold'
+            ha='center', va='bottom',
+            fontsize=10, fontweight='bold'
         )
     else:
         # label di bawah bar (karena negatif)
         ax4.text(
             bar.get_x() + bar.get_width()/2,
-            profit - (0.05 * abs(profit)),  # offset ke bawah
+            profit - offset,
             f"£{profit:,.0f} ({pct}%)",
-            ha='center', va='top', fontsize=10, fontweight='bold'
+            ha='center', va='top',
+            fontsize=10, fontweight='bold'
         )
 
 ax4.set_title("Total Profit per Segment")
 ax4.set_ylabel("Profit (£)")
 ax4.grid(axis='y', linestyle='--', alpha=0.7)
+
 fig4.tight_layout()
 st.pyplot(fig4)
 
