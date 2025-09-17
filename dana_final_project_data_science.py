@@ -145,12 +145,15 @@ fig2, ax2 = plt.subplots(figsize=(6,4))
 bars = ax2.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'red'])
 
 for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
+    height = bar.get_height()
     ax2.text(
-        bar.get_x() + bar.get_width()/2,
-        bar.get_height() + (0.05 * bar.get_height()),  #lebih flexible
-        f"{count} ({pct}%)",
-        ha='center', va='bottom', fontsize=10, fontweight='bold'
-    )
+        bar.get_x() + bar.get_width() / 2,
+        height / 2,                       # di tengah bar
+        f"{count}\n({pct}%)",
+        ha='center', va='center',
+        color='white', fontsize=10, fontweight='bold',
+        zorder=10
+    )
 
 ax2.set_title("Number of Transactions per Risk Segment")
 ax2.set_ylabel("Count")
