@@ -6,7 +6,7 @@ import numpy as np
 # ======================
 # LOAD DATA
 # ======================
-url = "https://raw.githubusercontent.com/PrismaDana94/Onky-Pradana-Final-Project-Data-Science/main/Dana_Final_Project_Credit_Card_Fraud_detection.csv"
+url = "https://raw.githubusercontent.com/PrismaDana94/Onky-Pradana-Final-Project-Data-Science/main/Final_Project_Credit_Card_Fraud_detection.csv"
 df_profit = pd.read_csv(url)
 
 # Pastikan ada kolom profit per transaksi
