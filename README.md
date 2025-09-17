@@ -41,6 +41,16 @@ Dataset yang digunakan diambil langsung dari repo ini:
 
 ---
 
+
+## 🖼️ Dashboard Overview
+
+Berikut adalah tampilan utama dashboard:
+
+![Dashboard Overview](images/dashboard_overview.png)
+
+
+
+---
 ## 🛠️ Tech Stack
 - **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, XGBoost)  
 - **Streamlit** – dashboard interaktif  
