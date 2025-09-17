@@ -140,21 +140,36 @@ st.subheader("🔎 Risk Segmentation")
 segment_counts = df_profit['risk_segment'].value_counts().sort_index()
 segment_percent = (segment_counts / segment_counts.sum() * 100).round(2)
 
+# --- Bar Chart ---
 fig2, ax2 = plt.subplots(figsize=(6,4))
 bars = ax2.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'red'])
+
 for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
-    ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height()*1.01,
-             f"{count} ({pct}%)", ha='center', va='bottom')
+    ax2.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() + (0.02 * segment_counts.max()),  # kasih jarak dinamis dari bar
+        f"{count} ({pct}%)",
+        ha='center', va='bottom', fontsize=10, fontweight='bold'
+    )
+
 ax2.set_title("Number of Transactions per Risk Segment")
 ax2.set_ylabel("Count")
 ax2.grid(axis='y', linestyle='--', alpha=0.7)
 st.pyplot(fig2)
 
-fig3, ax3 = plt.subplots()
-ax3.pie(segment_counts, labels=segment_counts.index, autopct='%1.1f%%',
-        colors=['skyblue', 'red'], startangle=90)
+# --- Pie Chart ---
+fig3, ax3 = plt.subplots(figsize=(5,5))
+ax3.pie(
+    segment_counts,
+    labels=segment_counts.index,
+    autopct='%1.1f%%',
+    colors=['skyblue', 'red'],
+    startangle=90,
+    wedgeprops={'edgecolor': 'white'}  # biar antar slice lebih jelas
+)
 ax3.set_title("Risk Segment Distribution")
 st.pyplot(fig3)
+
 
 insight_text = f"""
 1. *Distribusi Risiko*
