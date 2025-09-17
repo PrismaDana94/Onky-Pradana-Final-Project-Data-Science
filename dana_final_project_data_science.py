@@ -145,18 +145,12 @@ fig2, ax2 = plt.subplots(figsize=(6,4))
 bars = ax2.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'red'])
 
 for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
-    height = bar.get_height()
     ax2.text(
-    bar.get_x() + bar.get_width() / 2,
-    height + offset,
-    f"{count} ({pct}%)",
-    ha='center', 
-    va='bottom', 
-    fontsize=10, 
-    fontweight='bold',
-    zorder=10,       # ini buat pastikan teks muncul di atas grid
-    clip_on=False    # biar teks tetap kelihatan walau agak keluar axes
-)
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() + (0.02 * segment_counts.max()),  # kasih jarak dinamis dari bar
+        f"{count} ({pct}%)",
+        ha='center', va='bottom', fontsize=10, fontweight='bold'
+    )
 
 ax2.set_title("Number of Transactions per Risk Segment")
 ax2.set_ylabel("Count")
