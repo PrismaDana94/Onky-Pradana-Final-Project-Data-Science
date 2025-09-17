@@ -272,10 +272,11 @@ bars = ax6.bar(segment_profit['risk_segment'], segment_profit['total_profit'],
 for bar, profit in zip(bars, segment_profit['total_profit']):
     ax6.text(
         bar.get_x() + bar.get_width()/2,
-        bar.get_height() + (bar.get_height()*0.02),
+        bar.get_height()/2,
         f"{profit:,.0f}",
-        ha='center', va='bottom', fontsize=10
-    )
+        ha='center', va='center',
+        color='white', fontsize=10, fontweight='bold'
+    )
 
 ax6.set_title("Total Profit per Risk Segment (2 Segments)")
 ax6.set_xlabel("Risk Segment")
