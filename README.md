@@ -41,31 +41,6 @@ Dataset yang digunakan diambil langsung dari repo ini:
 
 ---
 
-
-## 🖼️ Dashboard Overview
-
-### 1️⃣ Profit Curve Analysis  
-Visualisasi profit berdasarkan threshold, termasuk titik optimal profit maksimum.  
-
-![Profit Curve](images/profit_curve.png)
-
----
-
-### 2️⃣ Risk Segmentation  
-Distribusi transaksi berdasarkan kategori risiko (Low Risk vs High Risk).  
-
-![Risk Segmentation](images/risk_segmentation.png)
-
----
-
-### 3️⃣ Insights Section  
-Ringkasan hasil analisis beserta rekomendasi untuk strategi pencegahan fraud.  
-
-![Insights](images/insights.png)
-
----
-
-
 ---
 ## 🛠️ Tech Stack
 - **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, XGBoost)  
