@@ -268,21 +268,26 @@ fig6, ax6 = plt.subplots(figsize=(6,4))
 bars = ax6.bar(segment_profit['risk_segment'], segment_profit['total_profit'],
                color=['skyblue', 'red'])
 
-# Tambahkan label angka di atas batang
+# --- Solusi 1: tambahkan ruang di atas bar ---
+ymax = segment_profit['total_profit'].max() * 1.15   # 15% lebih tinggi
+ax6.set_ylim(0, ymax)
+
+# --- Solusi 2: pakai offset lebih besar ---
 for bar, profit in zip(bars, segment_profit['total_profit']):
+    offset = bar.get_height() * 0.05   # 5% dari tinggi bar
     ax6.text(
         bar.get_x() + bar.get_width()/2,
-        bar.get_height()/2,
+        bar.get_height() + offset,
         f"{profit:,.0f}",
-        ha='center', va='center',
-        color='white', fontsize=10, fontweight='bold'
-    )
+        ha='center', va='bottom', fontsize=10, fontweight='bold'
+    )
 
 ax6.set_title("Total Profit per Risk Segment (2 Segments)")
 ax6.set_xlabel("Risk Segment")
 ax6.set_ylabel("Total Profit (£)")
-ax6.grid(axis='y')
-plt.tight_layout()
+ax6.grid(axis='y', linestyle='--', alpha=0.7)
+
+fig6.tight_layout()
 
 # Tampilkan di Streamlit
 st.pyplot(fig6)
