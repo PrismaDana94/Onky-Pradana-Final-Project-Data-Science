@@ -147,13 +147,16 @@ bars = ax2.bar(segment_counts.index, segment_counts.values, color=['skyblue', 'r
 for bar, count, pct in zip(bars, segment_counts.values, segment_percent.values):
     height = bar.get_height()
     ax2.text(
-        bar.get_x() + bar.get_width() / 2,
-        height / 2,                       # di tengah bar
-        f"{count}\n({pct}%)",
-        ha='center', va='center',
-        color='white', fontsize=10, fontweight='bold',
-        zorder=10
-    )
+    bar.get_x() + bar.get_width() / 2,
+    height + offset,
+    f"{count} ({pct}%)",
+    ha='center', 
+    va='bottom', 
+    fontsize=10, 
+    fontweight='bold',
+    zorder=10,       # ini buat pastikan teks muncul di atas grid
+    clip_on=False    # biar teks tetap kelihatan walau agak keluar axes
+)
 
 ax2.set_title("Number of Transactions per Risk Segment")
 ax2.set_ylabel("Count")
