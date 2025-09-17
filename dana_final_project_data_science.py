@@ -223,26 +223,28 @@ bars = ax4.bar(
     color=['skyblue', 'red']
 )
 
-for bar, profit, pct in zip(bars, segment_profit['profit'], segment_profit['profit_pct']):
-    offset = abs(profit) * 0.05  # offset proporsional (5% dari nilai profit)
+# ==== Solusi 1: beri ruang atas & bawah ====
+ymin = segment_profit['profit'].min() * 1.15  # kalau ada negatif, kasih ruang ekstra
+ymax = segment_profit['profit'].max() * 1.15
+ax4.set_ylim(ymin, ymax)
 
+# ==== Solusi 2: offset proporsional per bar ====
+for bar, profit, pct in zip(bars, segment_profit['profit'], segment_profit['profit_pct']):
+    offset = abs(bar.get_height()) * 0.05   # 5% dari tinggi bar
+    
     if profit >= 0:
-        # label di atas bar
         ax4.text(
             bar.get_x() + bar.get_width()/2,
-            profit + offset,
+            bar.get_height() + offset,
             f"£{profit:,.0f} ({pct}%)",
-            ha='center', va='bottom',
-            fontsize=10, fontweight='bold'
+            ha='center', va='bottom', fontsize=10, fontweight='bold'
         )
     else:
-        # label di bawah bar (karena negatif)
         ax4.text(
             bar.get_x() + bar.get_width()/2,
-            profit - offset,
+            bar.get_height() - offset,
             f"£{profit:,.0f} ({pct}%)",
-            ha='center', va='top',
-            fontsize=10, fontweight='bold'
+            ha='center', va='top', fontsize=10, fontweight='bold'
         )
 
 ax4.set_title("Total Profit per Segment")
