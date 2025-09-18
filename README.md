@@ -1,77 +1,76 @@
 # Final Project – Credit Card Fraud Detection
 
-[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen)](https://onky-pradana-final-project-data-science.streamlit.app/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen)](https://onky-pradana-final-project-data-science3.streamlit.app/)
 
 ##  Project Overview
-Proyek ini bertujuan untuk membangun **model machine learning** dalam mendeteksi transaksi kartu kredit yang berpotensi fraud.  
-Selain modeling, dibuat juga **Profit Curve Analysis** untuk menentukan threshold optimal yang memaksimalkan keuntungan bisnis, serta segmentasi risiko untuk mendukung pengambilan keputusan.
+
+Proyek ini berfokus pada pembuatan **dashboard interaktif dengan Streamlit** untuk menganalisis potensi fraud pada transaksi kartu kredit.
+Dashboard ini menampilkan **Profit Curve Analysis** untuk menentukan threshold optimal yang memaksimalkan keuntungan bisnis, serta **Risk Segmentation** untuk memisahkan transaksi aman dan berisiko tinggi.
 
 ---
 
 ## Dataset
-- **Sumber Data:** Simulasi dataset transaksi kartu kredit.  
-- **Jumlah Data:** ± 20.000 transaksi.  
-- **Kolom utama:**  
-  - `y_prob` → probabilitas fraud dari model XGBoost  
-  - `cum_profit` → perhitungan kumulatif profit berdasarkan threshold  
+Dataset ini merupakan hasil simulasi transaksi kartu kredit dengan label probabilitas fraud.
 
 Dataset yang digunakan diambil langsung dari repo ini:  
-[`Dana_Final_Project_Credit_Card_Fraud_detection.csv`](./Dana_Final_Project_Credit_Card_Fraud_detection.csv)
+[`Final_Project_Credit_Card_Fraud_detection.csv`](./Final_Project_Credit_Card_Fraud_detection.csv)
+
+Beberapa kolom penting:
+
+- y_prob → probabilitas fraud yang sudah diprediksi dari model sebelumnya
+- cum_profit → perhitungan kumulatif profit berdasarkan threshold
 
 ---
 
-## 🚀 Metodologi
-1. **Exploratory Data Analysis (EDA)** → memahami distribusi transaksi & fraud.  
-2. **Modeling dengan XGBoost** → prediksi probabilitas fraud.  
-3. **Profit Curve Analysis** → menentukan threshold optimal.  
-4. **Risk Segmentation** → membagi transaksi ke dalam **Low Risk** & **High Risk**.  
-5. **Dashboard Streamlit** → interaktif untuk eksplorasi threshold & dampaknya terhadap profit.
-
+## 🚀 Dashboard Workflow
+1. **Data Loading** → membaca dataset hasil prediksi probabilitas fraud.  
+2. **Profit Curve Analysis** → menampilkan kurva profit dan menentukan threshold optimal.  
+3. **Risk Segmentation** → membagi transaksi ke dalam kategori **Low Risk** & **High Risk**.  
+4. **Threshold Explorer** → slider interaktif untuk menganalisis trade-off antara profit dan coverage.  
+5. **Dashboard Output** → visualisasi interaktif (tabel, bar chart, pie chart) serta ringkasan insights.
+   
 ---
 
 ## 📈 Dashboard Features
-✅ **Data Preview** – menampilkan dataset hasil prediksi  
-✅ **Profit Curve** – dengan threshold optimal & profit maksimum  
-✅ **Risk Segmentation** – bar chart & pie chart distribusi transaksi  
-✅ **Threshold Explorer** – slider interaktif untuk analisis trade-off  
-✅ **Profit per Risk Segment** – membandingkan total profit per kategori risiko  
-✅ **Insights** – ringkasan hasil analisis & rekomendasi bisnis  
-
-🔗 **Live App** → [Streamlit Dashboard](https://onky-pradana-final-project-data-science.streamlit.app/)
+- **Data Preview** – melihat dataset hasil prediksi probabilitas fraud  
+- **Profit Curve** – menampilkan threshold optimal & profit maksimum  
+- **Risk Segmentation** – visualisasi distribusi transaksi per kategori risiko  
+- **Threshold Explorer** – slider interaktif untuk menganalisis trade-off  
+- **Profit per Risk Segment** – membandingkan total profit tiap segmen risiko  
+- **Insights** – ringkasan hasil analisis & rekomendasi bisnis
+  
+🔗 **Live App** → [Streamlit Dashboard](https://onky-pradana-final-project-data-science3.streamlit.app/)
 
 ---
 
 ---
 ## 🛠️ Tech Stack
-- **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, XGBoost)  
-- **Streamlit** – dashboard interaktif  
-- **GitHub** – version control & deployment  
+- Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, XGBoost)  
+- Streamlit – dashboard interaktif  
+- GitHub – version control & deployment  
 
 ---
 
 ## 📌 Key Insights
-- Threshold optimal berada di sekitar **0.0093** → menargetkan **~15.9% populasi**.  
+Berdasarkan analisis pada dataset yang tersedia:  
+- Threshold optimal berada di sekitar **0.0093** → menargetkan ~15.9% populasi.  
 - Profit maksimum yang bisa dicapai adalah sekitar **£124.780**.  
-- **Low Risk** → transaksi aman, bisa diproses otomatis.  
-- **High Risk** → transaksi dengan risiko tinggi, disarankan untuk pengecekan manual.  
+- **Low Risk** → transaksi aman, dapat diproses otomatis.  
+- **High Risk** → transaksi dengan risiko tinggi, disarankan untuk pengecekan manual.
 
+Hasil ini hanya berlaku pada dataset yang tersedia, bukan hasil training model dari repo ini.
 ---
 
-## 📂 Project Structure
-├── Final_Project_Credit_Card_Fraud_detection.csv # Dataset
-
-├── final_project_data_science.py # Streamlit app
-
-├── requirements.txt # Dependencies
-
-└── README.md # Project documentation
+## 📂 Main Files
+- `Final_Project_Credit_Card_Fraud_detection.csv` – dataset hasil prediksi  
+- `final_project_data_science.py` – Streamlit dashboard  
 
 ---
 
 ## 📬 Author
 👤 **Onky Pradana**  
 - 📧 Email: [freddycull27@gmail.com]  
-- 💼 LinkedIn:[my_linkedin](https://www.linkedin.com/in/prisma-dana/)  
+- 💼 LinkedIn:  [my_linkedin](https://www.linkedin.com/in/prisma-dana/)  
 - 🐙 GitHub: [PrismaDana94](https://github.com/PrismaDana94)
 
 ---
