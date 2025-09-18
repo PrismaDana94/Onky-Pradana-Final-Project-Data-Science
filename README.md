@@ -41,7 +41,6 @@ Beberapa kolom penting:
   
 🔗 **Live App** → [Streamlit Dashboard](https://onky-pradana-final-project-data-science3.streamlit.app/)
 
----
 
 ---
 ## 🛠️ Tech Stack
@@ -57,7 +56,6 @@ Berdasarkan analisis pada dataset yang tersedia:
 - Profit maksimum yang bisa dicapai adalah sekitar **£124.780**.  
 - **Low Risk** → transaksi aman, dapat diproses otomatis.  
 - **High Risk** → transaksi dengan risiko tinggi, disarankan untuk pengecekan manual.
-
 Hasil ini hanya berlaku pada dataset yang tersedia, bukan hasil training model dari repo ini.
 ---
 
